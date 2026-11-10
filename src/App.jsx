@@ -8,8 +8,8 @@ const projects = [
     type: "Power BI · Sales analysis",
     title: "The discount trap",
     subtitle: "Superstore Americas · Product profitability",
-    image: "/assets/superstore-profitability.png",
-    imageAlt: "Power BI profitability dashboard with category and discount comparisons",
+    image: "/assets/superstore-americas-dashboard.jpg",
+    imageAlt: "Superstore Americas product profitability dashboard with KPI tiles, subcategory margins, discount-vs-profit scatter and yearly profit by category",
     summary:
       "A profitability review of product, category and discount performance—built to make loss-making patterns easier to spot.",
     finding: "$286,397",
@@ -35,18 +35,19 @@ const projects = [
     title: "TechMart Nigeria",
     subtitle: "A regional performance dashboard",
     image: "/assets/techmart-dashboard.png",
-    imageAlt: "TechMart Nigeria regional summary dashboard",
+    imageAlt: "TechMart Nigeria executive summary dashboard with revenue, profit margin, stores, customers and transactions",
     summary:
-      "A single-page view of revenue, profit, store performance and customer totals across the supplied retail dashboard.",
-    finding: "₦11.38M",
+      "An executive summary view of revenue, profit margin, store count, customer and transaction totals across the supplied retail dashboard.",
+    finding: "₦147K",
     findingLabel: "revenue displayed in the dashboard",
     proofPoints: [
-      ["33.2%", "profit displayed"],
+      ["33.5%", "profit margin displayed"],
       ["50", "stores displayed"],
       ["5K", "customers displayed"],
+      ["₦49", "transactions displayed"],
     ],
     details:
-      "The screenshot also displays a 33.2% profit figure, 50 stores and 5K customers. These are values shown in the supplied dashboard image; the portfolio does not infer a reporting period or additional business impact.",
+      "The supplied dashboard displays ₦147K revenue, a 33.5% profit margin, 50 stores, 5K customers and ₦49 transactions. It breaks revenue down by region, category and month (Jan–Dec 2023). These are values shown in the supplied dashboard; the portfolio does not infer additional business impact beyond them.",
     tags: ["Power BI", "DAX", "Excel"],
     link: "/assets/techmart-executive-report.pdf",
     linkLabel: "Read the executive report",
@@ -113,6 +114,27 @@ const projects = [
       "The supplied diagram includes category, supplier, product, prescription, sales, employee and customer tables. It is presented here as a data-modeling sample, not as a deployed healthcare system.",
     tags: ["SQL", "MySQL", "Data modeling"],
   },
+  {
+    slug: "python-analysis",
+    number: "06",
+    type: "Python · Code analysis",
+    title: "Python analysis",
+    subtitle: "Code walkthrough & visual output",
+    image: "/assets/superstore-profitability.png",
+    imageAlt: "Python analysis code with its dashboard output",
+    summary:
+      "A Python-based analysis presented alongside its visual dashboard output, shown here as a code-and-chart pairing.",
+    finding: "Python",
+    findingLabel: "language used for the analysis",
+    proofPoints: [
+      ["Pandas", "data preparation"],
+      ["Matplotlib", "visual output"],
+      ["Jupyter", "notebook workflow"],
+    ],
+    details:
+      "This entry presents the Python analysis code together with the chart it produces. The screenshot pairs the code and the resulting dashboard output so the logic behind each visual is traceable.",
+    tags: ["Python", "Pandas", "Visualization"],
+  },
 ];
 
 const navigation = [
@@ -168,6 +190,7 @@ function Footer() {
       <Link className="footer-signoff" to="/">Promise Sunday<span>.</span></Link>
       <span>Thoughtful analysis. Clearer decisions.</span>
       <a href="mailto:promisespeter@email.com">promisespeter@email.com <Arrow diagonal /></a>
+      <a href="https://wa.me/2348140365922" target="_blank" rel="noreferrer">WhatsApp <Arrow diagonal /></a>
       <span className="footer-year">© 2026</span>
     </footer>
   );
@@ -453,7 +476,15 @@ function Work() {
 
 function ProjectDetail() {
   const { slug } = useParams();
+  const [zoomed, setZoomed] = useState(false);
   const project = projects.find((item) => item.slug === slug);
+  useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e) => e.key === "Escape" && setZoomed(false);
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [zoomed]);
   if (!project) return <NotFound />;
   return (
     <main className="page-main">
@@ -469,7 +500,21 @@ function ProjectDetail() {
               <source src={project.video} type="video/mp4" />
               Your browser does not support this video.
             </video>
-          ) : <img src={project.image} alt={project.imageAlt} />}
+          ) : (
+            <>
+              <img src={project.image} alt={project.imageAlt} onClick={() => setZoomed(true)} className="zoomable-image" />
+              <button className="zoom-hint" type="button" onClick={() => setZoomed(true)}>🔍 CLICK TO ENLARGE</button>
+              {zoomed && (
+                <div className="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged diagram" onClick={() => setZoomed(false)}>
+                  <button className="lightbox-close" type="button" aria-label="Close enlarged view" onClick={() => setZoomed(false)}>✕</button>
+                  <div className="lightbox-scroll" onClick={(e) => e.stopPropagation()}>
+                    <img src={project.image} alt={project.imageAlt} />
+                  </div>
+                  <p className="lightbox-hint">Scroll inside the frame to pan · Click ✕ or anywhere outside to close</p>
+                </div>
+              )}
+            </>
+          )}
         </div>
         <div className="detail-story">
           <div><span className="mini-label">THE QUESTION</span><p>{project.summary}</p></div>
@@ -594,6 +639,7 @@ function Contact() {
           <a href="mailto:promisespeter@email.com" className="contact-direct">promisespeter@email.com <Arrow diagonal /></a>
           <a href="https://github.com/promisespeter-ship-it/promise-sunday" className="contact-direct" target="_blank" rel="noreferrer">GITHUB <Arrow diagonal /></a>
           <a href="https://www.linkedin.com/in/promise-peter-8a453b3a6/" className="contact-direct" target="_blank" rel="noreferrer">LINKEDIN <Arrow diagonal /></a>
+          <a href="https://wa.me/2348140365922" className="contact-direct" target="_blank" rel="noreferrer">WHATSAPP <Arrow diagonal /></a>
         </div>
         <form className="contact-form" onSubmit={submit}>
           <label htmlFor="name">YOUR NAME<input id="name" name="name" value={form.name} onChange={update} placeholder="How should I address you?" autoComplete="name" required /></label>
@@ -630,6 +676,17 @@ export default function App() {
   return (
     <div className="app-shell">
       <Header />
+      <a
+        className="whatsapp-float"
+        href="https://wa.me/2348140365922"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M16 3C9.4 3 4 8.3 4 14.9c0 2.1.6 4.1 1.6 5.9L4 29l8.4-2.2c1.7.9 3.7 1.4 5.6 1.4 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm0 21.5c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.4 1.2 1.2-4.3-.2-.4c-1-1.6-1.5-3.5-1.5-5.4 0-5.5 4.6-10 10.3-10s10.3 4.5 10.3 10-4.6 10.5-10.3 10.5zm5.7-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.8-1-2.4-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/>
+        </svg>
+      </a>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Work />} />

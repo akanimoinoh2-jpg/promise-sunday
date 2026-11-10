@@ -1,0 +1,69 @@
+/* Ekong Sampson Connect — shared site styles (standalone minimal version) */
+:root {
+  --bg: #f6f5f1;
+  --ink: #10251e;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--ink); }
+
+.utility { background: #10251e; color: #fff; font-size: 13px; }
+.utility .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; padding-bottom: 10px; }
+.utility strong { letter-spacing: .06em; }
+.utility a { color: #cfe3d7; text-decoration: none; }
+.utility a:hover { color: #fff; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; background: #10251e; color: #fff;
+  padding: 8px 14px; border-radius: 0 0 8px 0; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ---- shared team credentials box (admin login) & login links ---- */
+.shared-creds {
+  background: #eaf4ec;
+  border: 1px solid #cfe3d7;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  font-size: .9rem;
+}
+.creds-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.creds-row code {
+  background: #fff;
+  border: 1px solid #dfe8df;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: .85rem;
+}
+.copy-btn {
+  margin-left: auto;
+  border: none;
+  background: #10251e;
+  color: #fff;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: .75rem;
+  cursor: pointer;
+}
+.utility-links a { color: #cfe3d7; text-decoration: none; margin: 0 2px; }
+.utility-links a:hover, .utility-links .login-link { color: #fff; font-weight: 700; }
+.utility-links .login-link {
+  background: #2e6b4d;
+  border-radius: 999px;
+  padding: 4px 14px;
+}
+.utility-links .login-link:hover { background: #3c8a63; }

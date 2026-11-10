@@ -199,8 +199,52 @@ h1 em, h2 em, .statement-band em { font: italic 400 1.02em var(--serif); letter-
 .detail-hero h1 { font-size: clamp(44px, 6.5vw, 82px); letter-spacing: -.065em; line-height: .98; font-weight: 500; margin: 0; }
 .detail-hero h1 em { font-size: .62em; color: var(--lime); }
 .detail-content { display: grid; grid-template-columns: 1.1fr .9fr; gap: 7vw; align-items: start; padding-top: 63px; }
-.detail-image { background: var(--paper-deep); border: 9px solid #e2e1d7; }
+.detail-image { background: var(--paper-deep); border: 9px solid #e2e1d7; position: relative; }
 .detail-image img { display: block; width: 100%; height: auto; }
+.detail-image .zoomable-image { cursor: zoom-in; }
+.zoom-hint {
+  position: absolute; right: 14px; bottom: 14px;
+  border: none; cursor: zoom-in;
+  background: var(--forest); color: var(--lime);
+  font-family: var(--mono); font-size: 9px; letter-spacing: .055em;
+  padding: 8px 12px;
+}
+.zoom-hint:hover { background: #1c4233; }
+
+/* lightbox: full-size diagram, pannable/scrollable */
+.lightbox {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(7, 19, 14, .94);
+  display: flex; flex-direction: column; align-items: center;
+  cursor: zoom-out;
+}
+.lightbox-scroll {
+  flex: 1; width: 100%; max-width: 1400px;
+  overflow: auto; cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+}
+.lightbox-scroll:active { cursor: grabbing; }
+.lightbox-scroll img {
+  max-width: none;
+  width: 1900px;              /* rendered larger than the viewport so it can be panned */
+  height: auto;
+  margin: auto;               /* centered when smaller than the scroll area */
+  cursor: grab;
+}
+.lightbox-close {
+  position: absolute; top: 18px; right: 22px;
+  z-index: 2;
+  border: 1px solid rgba(217,255,89,.5);
+  background: var(--forest); color: var(--lime);
+  font-size: 16px; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%;
+}
+.lightbox-close:hover { background: var(--lime); color: var(--forest); }
+.lightbox-hint {
+  color: #aebbb0; font-family: var(--mono); font-size: 10px; letter-spacing: .055em;
+  padding: 12px 0 16px; margin: 0; text-align: center;
+}
 .detail-image video { display: block; width: 100%; max-height: 620px; aspect-ratio: 16 / 9; background: var(--forest); object-fit: contain; }
 .detail-story > div:not(.finding-panel) { margin-bottom: 27px; }
 .mini-label { display: block; color: #74824b; font-size: 9px; margin-bottom: 10px; }
@@ -407,4 +451,31 @@ h1 em, h2 em, .statement-band em { font: italic 400 1.02em var(--serif); letter-
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .message-track { animation: none; }
   .message-group + .message-group { display: none; }
+}
+
+/* Floating WhatsApp button */
+.whatsapp-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 80;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(16, 37, 30, .28);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 24px rgba(16, 37, 30, .35);
+}
+.whatsapp-float svg { display: block; }
+
+@media (max-width: 640px) {
+  .whatsapp-float { right: 14px; bottom: 14px; width: 48px; height: 48px; }
+  .whatsapp-float svg { width: 22px; height: 22px; }
 }

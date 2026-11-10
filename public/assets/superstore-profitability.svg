@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="684" height="396" viewBox="0 0 684 396" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="684" height="396" fill="#0d1117"/>
+
+  <!-- Top title bar (white) -->
+  <rect x="6" y="6" width="330" height="24" fill="#ffffff"/>
+  <text x="14" y="22" fill="#10251e" font-size="12" font-weight="700">Superstore Americas | Product profitability Dashboard</text>
+
+  <!-- Team Bravo badge -->
+  <rect x="512" y="2" width="166" height="30" rx="4" fill="#0b1220" stroke="#1e2a3a"/>
+  <!-- graduation cap icon -->
+  <g transform="translate(524 8)">
+    <rect x="0" y="0" width="18" height="18" rx="3" fill="#ffffff"/>
+    <path d="M2 8 L9 4 L16 8 L9 12 Z" fill="#0d1117"/>
+    <path d="M6 10 v3 c0 1 6 1 6 0 v-3" fill="none" stroke="#0d1117" stroke-width="1.2"/>
+    <line x1="15" y1="8" x2="15" y2="13" stroke="#0d1117" stroke-width="1"/>
+  </g>
+  <text x="548" y="22" fill="#ffffff" font-size="13" font-weight="800">Team Bravo</text>
+
+  <!-- KPI tiles -->
+  <!-- Total Profit (green) -->
+  <g>
+    <rect x="6" y="38" width="122" height="44" rx="3" fill="#0e7a3e"/>
+    <rect x="12" y="48" width="24" height="24" rx="3" fill="#ffffff"/>
+    <text x="18" y="64" fill="#0e7a3e" font-size="13" font-weight="700">$</text>
+    <text x="42" y="52" fill="#d7f5e0" font-size="8" font-weight="700">Total Profit</text>
+    <text x="42" y="70" fill="#ffffff" font-size="13" font-weight="800">$286,397</text>
+  </g>
+  <!-- Best Category (green) -->
+  <g>
+    <rect x="132" y="38" width="122" height="44" rx="3" fill="#0e7a3e"/>
+    <rect x="138" y="48" width="24" height="24" rx="3" fill="#ffffff"/>
+    <path d="M141 58 h18 M145 54 l6 -3 l6 3 M147 62 h6" stroke="#0e7a3e" stroke-width="1.6" fill="none"/>
+    <text x="168" y="52" fill="#d7f5e0" font-size="8" font-weight="700">Best Category</text>
+    <text x="168" y="70" fill="#ffffff" font-size="12" font-weight="800">Technology</text>
+  </g>
+  <!-- Worst Category (red) -->
+  <g>
+    <rect x="258" y="38" width="122" height="44" rx="3" fill="#c0392b"/>
+    <rect x="264" y="48" width="24" height="24" rx="3" fill="#ffffff"/>
+    <path d="M268 52 l16 16 M284 52 l-16 16" stroke="#c0392b" stroke-width="2"/>
+    <text x="294" y="52" fill="#fde3e0" font-size="8" font-weight="700">Worst Category</text>
+    <text x="294" y="70" fill="#ffffff" font-size="12" font-weight="800">Furniture</text>
+  </g>
+  <!-- Avg Discount (green) -->
+  <g>
+    <rect x="384" y="38" width="122" height="44" rx="3" fill="#0e7a3e"/>
+    <rect x="390" y="48" width="24" height="24" rx="3" fill="#ffffff"/>
+    <rect x="394" y="53" width="16" height="13" fill="none" stroke="#0e7a3e" stroke-width="1.5"/>
+    <path d="M394 60 h16 M400 53 v13" stroke="#0e7a3e" stroke-width="1"/>
+    <text x="420" y="52" fill="#d7f5e0" font-size="8" font-weight="700">Avg Discount</text>
+    <text x="420" y="70" fill="#ffffff" font-size="12" font-weight="800">15.6%</text>
+  </g>
+  <!-- Negative margin (red) -->
+  <g>
+    <rect x="510" y="38" width="168" height="44" rx="3" fill="#c0392b"/>
+    <rect x="516" y="48" width="24" height="24" rx="3" fill="#ffffff"/>
+    <circle cx="528" cy="60" r="8" fill="none" stroke="#c0392b" stroke-width="2.4"/>
+    <line x1="523" y1="55" x2="533" y2="65" stroke="#c0392b" stroke-width="2.4"/>
+    <text x="546" y="50" fill="#fde3e0" font-size="7.5" font-weight="700">Product with negative Margin</text>
+    <text x="546" y="70" fill="#ffffff" font-size="12" font-weight="800">17.65%</text>
+  </g>
+
+  <!-- Left panel: Profit Margin % by Subcategory -->
+  <rect x="6" y="90" width="152" height="266" rx="3" fill="#0e6b38"/>
+  <rect x="14" y="98" width="20" height="16" fill="#ffffff"/>
+  <path d="M17 105 h14 M19 108 l4 -5 l4 5 M21 111 l3 -3 l3 3" stroke="#0e6b38" stroke-width="1.2" fill="none"/>
+  <text x="40" y="110" fill="#ffffff" font-size="9" font-weight="700">Profit Margin % by Subcategory</text>
+
+  <g font-size="6.5" fill="#dff3e4" text-anchor="end">
+    <text x="56" y="126">Labels</text>
+    <text x="56" y="140">Paper</text>
+    <text x="56" y="154">Envelopes</text>
+    <text x="56" y="168">Copiers</text>
+    <text x="56" y="182">Fasteners</text>
+    <text x="56" y="196">Accessories</text>
+    <text x="56" y="210">Art</text>
+    <text x="56" y="224">Appliances</text>
+    <text x="56" y="238">Binders</text>
+    <text x="56" y="252">Furnishings</text>
+    <text x="56" y="266">Phones</text>
+    <text x="56" y="280">Storage</text>
+    <text x="56" y="294">Chairs</text>
+    <text x="56" y="308">Supplies</text>
+    <text x="56" y="322">Machines</text>
+    <text x="56" y="336">Bookcases</text>
+    <text x="56" y="350">Tables</text>
+  </g>
+  <g font-size="5" fill="#bfe8cc" text-anchor="start">
+    <text x="146" y="126">45.63%</text>
+    <text x="144" y="140">43.25%</text>
+    <text x="142" y="154">42.30%</text>
+    <text x="140" y="168">41.20%</text>
+    <text x="138" y="182">36.20%</text>
+    <text x="136" y="196">35.60%</text>
+    <text x="136" y="210">34.80%</text>
+    <text x="134" y="224">32.60%</text>
+    <text x="132" y="238">31.90%</text>
+    <text x="130" y="252">29.40%</text>
+    <text x="128" y="266">26.30%</text>
+    <text x="122" y="280">9.75%</text>
+    <text x="60" y="294" fill="#f0c0bc">-3.09%</text>
+    <text x="60" y="308" fill="#f0c0bc">-3.90%</text>
+    <text x="60" y="322" fill="#f0c0bc">-8.50%</text>
+    <text x="60" y="336" fill="#f0c0bc">-9.60%</text>
+    <text x="60" y="350" fill="#f0c0bc">-15.90%</text>
+  </g>
+  <!-- bars -->
+  <g fill="#5ad47c">
+    <rect x="60" y="121" width="84" height="5"/>
+    <rect x="60" y="135" width="82" height="5"/>
+    <rect x="60" y="149" width="80" height="5"/>
+    <rect x="60" y="163" width="78" height="5"/>
+    <rect x="60" y="177" width="76" height="5"/>
+    <rect x="60" y="191" width="74" height="5"/>
+    <rect x="60" y="205" width="72" height="5"/>
+    <rect x="60" y="219" width="70" height="5"/>
+    <rect x="60" y="233" width="68" height="5"/>
+    <rect x="60" y="247" width="62" height="5"/>
+    <rect x="60" y="261" width="56" height="5"/>
+  </g>
+  <rect x="60" y="275" width="34" height="5" fill="#e9c46a"/>
+  <g fill="#d9534f">
+    <rect x="46" y="289" width="12" height="5"/>
+    <rect x="44" y="303" width="14" height="5"/>
+    <rect x="42" y="317" width="16" height="5"/>
+    <rect x="40" y="331" width="18" height="5"/>
+    <rect x="34" y="345" width="24" height="5"/>
+  </g>
+  <g font-size="5.5" fill="#a9dcc0" text-anchor="middle">
+    <text x="66" y="360">-40.00%</text><text x="106" y="360">-20.00%</text><text x="140" y="360">0.00%</text>
+  </g>
+
+  <!-- Discount% Vs Profit -->
+  <rect x="164" y="90" width="278" height="128" rx="3" fill="#0e6b38"/>
+  <rect x="172" y="98" width="16" height="16" fill="#ffffff"/>
+  <path d="M175 110 q3 -6 6 -6 q4 0 5 5" fill="none" stroke="#0e6b38" stroke-width="1.4"/>
+  <text x="194" y="110" fill="#ffffff" font-size="10" font-weight="700">Discount% Vs Profit</text>
+  <!-- axis -->
+  <line x1="196" y1="200" x2="432" y2="200" stroke="#9fdcb8" stroke-width="0.8"/>
+  <line x1="196" y1="118" x2="196" y2="200" stroke="#9fdcb8" stroke-width="0.8"/>
+  <g font-size="5" fill="#cdeedd" text-anchor="end">
+    <text x="193" y="124">$6,000</text><text x="193" y="140">$4,000</text><text x="193" y="156">$2,000</text><text x="193" y="172">$0</text><text x="193" y="188">-$2,000</text><text x="193" y="200">-$4,000</text>
+  </g>
+  <g font-size="5" fill="#cdeedd" text-anchor="middle">
+    <text x="204" y="207">0%</text><text x="248" y="207">20%</text><text x="292" y="207">40%</text><text x="336" y="207">60%</text><text x="380" y="207">80%</text><text x="424" y="207">100%</text>
+  </g>
+  <!-- scatter clusters near low discount + outliers -->
+  <g fill="#8fe3a8">
+    <circle cx="210" cy="166" r="1.6"/><circle cx="214" cy="162" r="1.6"/><circle cx="218" cy="168" r="1.6"/>
+    <circle cx="222" cy="164" r="1.6"/><circle cx="226" cy="169" r="1.6"/><circle cx="230" cy="163" r="1.6"/>
+    <circle cx="234" cy="167" r="1.6"/><circle cx="238" cy="170" r="1.6"/><circle cx="242" cy="165" r="1.6"/>
+    <circle cx="246" cy="171" r="1.6"/><circle cx="250" cy="168" r="1.6"/><circle cx="254" cy="172" r="1.6"/>
+    <circle cx="258" cy="174" r="1.6"/><circle cx="262" cy="176" r="1.6"/><circle cx="266" cy="178" r="1.6"/>
+    <circle cx="280" cy="180" r="1.6"/><circle cx="292" cy="182" r="1.6"/>
+    <circle cx="320" cy="150" r="1.6"/><circle cx="356" cy="156" r="1.6"/><circle cx="392" cy="160" r="1.6"/><circle cx="420" cy="164" r="1.6"/>
+  </g>
+  <g fill="#e9c46a">
+    <circle cx="228" cy="186" r="1.6"/><circle cx="252" cy="188" r="1.6"/><circle cx="286" cy="190" r="1.6"/><circle cx="340" cy="192" r="1.6"/>
+  </g>
+  <g fill="#ffffff">
+    <circle cx="270" cy="192" r="1.6"/><circle cx="308" cy="194" r="1.6"/>
+  </g>
+  <!-- legend -->
+  <g font-size="5.5" fill="#dff3e4">
+    <line x1="392" y1="122" x2="416" y2="122" stroke="#8fe3a8" stroke-width="1.4"/><text x="420" y="124">Profit</text>
+    <line x1="392" y1="132" x2="416" y2="132" stroke="#e9c46a" stroke-width="1.4"/><text x="420" y="134">Los_ Profit</text>
+    <line x1="392" y1="142" x2="416" y2="142" stroke="#ffffff" stroke-width="1.4"/><text x="420" y="144">Lo_ Profit</text>
+  </g>
+
+  <!-- Profit by Category by Year -->
+  <rect x="448" y="90" width="230" height="128" rx="3" fill="#0e6b38"/>
+  <rect x="456" y="98" width="16" height="16" fill="#ffffff"/>
+  <path d="M459 106 h10 M464 101 v10" stroke="#0e6b38" stroke-width="1.6"/>
+  <text x="478" y="110" fill="#ffffff" font-size="10" font-weight="700">Profit by Category by Year</text>
+  <!-- axis -->
+  <line x1="484" y1="200" x2="668" y2="200" stroke="#9fdcb8" stroke-width="0.8"/>
+  <g font-size="4.6" fill="#cdeedd" text-anchor="end">
+    <text x="481" y="126">$60.0K</text><text x="481" y="144">$40.0K</text><text x="481" y="162">$20.0K</text><text x="481" y="180">$0.0K</text><text x="481" y="198">-$20.0K</text>
+  </g>
+  <!-- groups: Furniture / Office Supplies / Technology x years -->
+  <g>
+    <rect x="494" y="184" width="8" height="16" fill="#d9534f"/><rect x="504" y="164" width="8" height="36" fill="#5ad47c"/>
+    <rect x="524" y="188" width="8" height="12" fill="#d9534f"/><rect x="534" y="150" width="8" height="50" fill="#5ad47c"/>
+    <rect x="554" y="190" width="8" height="10" fill="#d9534f"/><rect x="564" y="144" width="8" height="56" fill="#5ad47c"/>
+    <rect x="584" y="186" width="8" height="14" fill="#d9534f"/><rect x="594" y="140" width="8" height="60" fill="#5ad47c"/>
+    <rect x="604" y="182" width="8" height="18" fill="#d9534f"/><rect x="614" y="128" width="8" height="72" fill="#5ad47c"/>
+    <rect x="634" y="176" width="8" height="24" fill="#d9534f"/><rect x="644" y="122" width="8" height="78" fill="#5ad47c"/>
+  </g>
+  <g font-size="4.2" fill="#ffffff" text-anchor="middle">
+    <text x="498" y="181">-$6.9K</text><text x="508" y="161">$19.3K</text>
+    <text x="528" y="185">-$2.9K</text><text x="538" y="147">$38.4K</text>
+    <text x="558" y="187">-$4.0K</text><text x="568" y="141">$34.0K</text>
+    <text x="588" y="183">$4.5K</text><text x="598" y="137">$40.1K</text>
+    <text x="608" y="179">$5.0K</text><text x="618" y="125">$43.7K</text>
+    <text x="638" y="173">$9.5K</text><text x="648" y="119">$47.8K</text>
+  </g>
+  <g font-size="4.6" fill="#cdeedd" text-anchor="middle">
+    <text x="503" y="210">Furniture</text><text x="533" y="210">Office Sup..</text><text x="563" y="210">Technology</text>
+    <text x="593" y="210">Furniture</text><text x="623" y="210">Office Sup..</text><text x="653" y="210">Technology</text>
+  </g>
+  <g font-size="4.6" fill="#9fb8a8" text-anchor="middle">
+    <text x="533" y="216">2011</text><text x="593" y="216">2012</text><text x="653" y="216">2013</text>
+  </g>
+
+  <!-- Filter boxes -->
+  <g>
+    <rect x="164" y="226" width="160" height="130" rx="3" fill="#0e6b38"/>
+    <rect x="172" y="234" width="20" height="14" fill="#ffffff"/>
+    <text x="176" y="244" fill="#0e6b38" font-size="8" font-weight="700">&#9662;</text>
+    <text x="198" y="244" fill="#ffffff" font-size="9" font-weight="700">Region</text>
+    <rect x="172" y="256" width="144" height="18" rx="2" fill="#e8f5ee"/>
+    <text x="178" y="268" fill="#0d5d3e" font-size="8">Central</text>
+    <rect x="298" y="260" width="14" height="10" fill="#ffffff" stroke="#7a7a7a"/>
+    <rect x="309" y="262" width="3" height="6" fill="#2ea862"/>
+
+    <rect x="332" y="226" width="160" height="130" rx="3" fill="#0e6b38"/>
+    <rect x="340" y="234" width="20" height="14" fill="#ffffff"/>
+    <text x="344" y="244" fill="#0e6b38" font-size="8" font-weight="700">&#9662;</text>
+    <text x="366" y="244" fill="#ffffff" font-size="9" font-weight="700">Category</text>
+    <rect x="340" y="256" width="144" height="18" rx="2" fill="#e8f5ee"/>
+    <text x="346" y="268" fill="#0d5d3e" font-size="8">Furniture</text>
+    <rect x="466" y="260" width="14" height="10" fill="#ffffff" stroke="#7a7a7a"/>
+    <rect x="477" y="262" width="3" height="6" fill="#2ea862"/>
+
+    <rect x="500" y="226" width="178" height="130" rx="3" fill="#0e6b38"/>
+    <rect x="508" y="234" width="20" height="14" fill="#ffffff"/>
+    <text x="512" y="244" fill="#0e6b38" font-size="8" font-weight="700">&#9662;</text>
+    <text x="534" y="244" fill="#ffffff" font-size="9" font-weight="700">Discount Band</text>
+    <rect x="508" y="256" width="162" height="18" rx="2" fill="#e8f5ee"/>
+    <text x="514" y="268" fill="#0d5d3e" font-size="8">High</text>
+    <rect x="652" y="260" width="14" height="10" fill="#ffffff" stroke="#7a7a7a"/>
+    <rect x="663" y="262" width="3" height="6" fill="#2ea862"/>
+  </g>
+</svg>

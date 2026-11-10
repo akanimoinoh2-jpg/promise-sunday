@@ -1,0 +1,166 @@
+/* Ekong Sampson Connect — public fact sheet styles */
+
+.hero {
+  background: linear-gradient(140deg, #10251e 0%, #1c4233 60%, #2e6b4d 100%);
+  color: #fff;
+  padding: 56px 0 64px;
+}
+.hero .kicker {
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #9fd6b4;
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
+.hero-sub {
+  margin-top: 14px;
+  max-width: 640px;
+  color: #d8ebe0;
+  font-size: 1.05rem;
+}
+
+.fact-section {
+  background: #fff;
+  border: 1px solid #e4e2d9;
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin: 24px 0;
+  box-shadow: 0 1px 3px rgba(16, 37, 30, .06);
+}
+.fact-section h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #eef3ee;
+}
+.fact-section h2 .num {
+  font-size: .8rem;
+  font-weight: 700;
+  color: #2e6b4d;
+  background: #eaf4ec;
+  border-radius: 999px;
+  padding: 4px 10px;
+  letter-spacing: .08em;
+}
+.muted-inline { color: var(--muted); font-size: .85rem; font-weight: 400; }
+
+.hero-nav { margin-top: 18px; font-size: .95rem; }
+.hero-nav a { color: #9fd6b4; text-decoration: none; font-weight: 500; }
+.hero-nav a:hover { color: #fff; text-decoration: underline; }
+.hero-nav span { margin: 0 10px; color: #6ea98a; }
+
+.page-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 4px; }
+.page-nav a {
+  font-size: .85rem;
+  text-decoration: none;
+  color: #2e6b4d;
+  background: #fff;
+  border: 1px solid #dfe8df;
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+.page-nav a:hover { background: #eaf4ec; }
+
+.fact-section p { margin-bottom: 12px; }
+
+.fact-list.nested { margin: 8px 0 0 10px; }
+.fact-list.nested li::before { width: 6px; height: 6px; background: #6ea98a; }
+
+.fact-list {
+  list-style: none;
+  padding: 0;
+}
+.fact-list li {
+  position: relative;
+  padding: 8px 0 8px 22px;
+  border-bottom: 1px dashed #edeee8;
+}
+.fact-list li:last-child { border-bottom: none; }
+.fact-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e6b4d;
+}
+.fact-list.compact li { padding: 6px 0 6px 22px; font-size: .95rem; }
+
+.status-label {
+  margin: 24px 0 6px;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.status-label::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: #2e6b4d;
+}
+.status-label.ongoing::before { background: #d9a441; }
+.status-label.upcoming::before { background: #a8adb3; }
+
+.site-footer {
+  background: #10251e;
+  color: #cfe3d7;
+  padding: 26px 0;
+  font-size: .9rem;
+  margin-top: 40px;
+}
+.site-footer a { color: #9fd6b4; }
+
+@media (max-width: 600px) {
+  .fact-section { padding: 20px 16px; }
+}
+
+/* ---- Senator image gallery (profile page) ---- */
+.gallery-section .gallery-toggle { margin: 6px 0 12px; }
+.gallery-status { font-size: .9rem; color: var(--muted); margin-bottom: 12px; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.gallery-card {
+  background: #fff;
+  border: 1px solid #e4e2d9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(16, 37, 30, .06);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.gallery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(16, 37, 30, .12);
+}
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.gallery-card figcaption {
+  padding: 10px 12px;
+  font-size: .85rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.hidden { display: none; }
