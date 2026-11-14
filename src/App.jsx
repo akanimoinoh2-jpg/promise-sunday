@@ -1,141 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
+import AdminProjects from "./AdminProjects.jsx";
+import { initialProjects } from "./projects.js";
 
-const projects = [
-  {
-    slug: "superstore-profitability",
-    number: "01",
-    type: "Power BI · Sales analysis",
-    title: "The discount trap",
-    subtitle: "Superstore Americas · Product profitability",
-    image: "/assets/superstore-americas-dashboard.jpg",
-    imageAlt: "Superstore Americas product profitability dashboard with KPI tiles, subcategory margins, discount-vs-profit scatter and yearly profit by category",
-    summary:
-      "A profitability review of product, category and discount performance—built to make loss-making patterns easier to spot.",
-    finding: "$286,397",
-    findingLabel: "total profit displayed in the supplied dashboard",
-    proofPoints: [
-      ["15.6%", "average discount"],
-      ["17.65%", "products with negative margins"],
-      ["Technology", "best category shown"],
-      ["Furniture", "weakest category shown"],
-    ],
-    details:
-      "The supplied dashboard reports $286,397 total profit, a 15.6% average discount, and negative margins for 17.65% of products. It labels Technology as the best category and Furniture as the weakest. The companion report examines the relationship between discounting and profitability.",
-    tags: ["Power BI", "Excel", "Profitability"],
-    link: "/assets/discount-trap-report.pdf",
-    linkLabel: "Read the analysis",
-    download: "/assets/superstore-analysis.xlsx",
-    downloadLabel: "Source workbook",
-  },
-  {
-    slug: "techmart-nigeria",
-    number: "02",
-    type: "Power BI · Regional summary",
-    title: "TechMart Nigeria",
-    subtitle: "A regional performance dashboard",
-    image: "/assets/techmart-dashboard.png",
-    imageAlt: "TechMart Nigeria executive summary dashboard with revenue, profit margin, stores, customers and transactions",
-    summary:
-      "An executive summary view of revenue, profit margin, store count, customer and transaction totals across the supplied retail dashboard.",
-    finding: "₦147K",
-    findingLabel: "revenue displayed in the dashboard",
-    proofPoints: [
-      ["33.5%", "profit margin displayed"],
-      ["50", "stores displayed"],
-      ["5K", "customers displayed"],
-      ["₦49", "transactions displayed"],
-    ],
-    details:
-      "The supplied dashboard displays ₦147K revenue, a 33.5% profit margin, 50 stores, 5K customers and ₦49 transactions. It breaks revenue down by region, category and month (Jan–Dec 2023). These are values shown in the supplied dashboard; the portfolio does not infer additional business impact beyond them.",
-    tags: ["Power BI", "DAX", "Excel"],
-    link: "/assets/techmart-executive-report.pdf",
-    linkLabel: "Read the executive report",
-  },
-  {
-    slug: "oil-gas-dashboard",
-    number: "03",
-    type: "Sales dashboard · Petroleum",
-    title: "Oil & Gas dashboard",
-    subtitle: "Regional petroleum sales tracking",
-    video: "/assets/oil-gas-dashboard.mp4",
-    mediaLabel: "Oil and Gas sales dashboard walkthrough",
-    summary:
-      "Track petroleum sales across regions with interactive filters for region, product, and time period.",
-    finding: "3",
-    findingLabel: "filters described in the source: region, product, and time period",
-    details:
-      "The supplied project page describes a retail company that could not track petroleum sales across regions in real time. It says an interactive dashboard was built with filters for region, product, and time period. A local dashboard walkthrough is available below.",
-    tags: ["Sales analysis", "Petroleum", "Dashboard"],
-  },
-  {
-    slug: "employee-analytics",
-    number: "04",
-    type: "MySQL & Python · HR analytics",
-    title: "Employee analytics",
-    subtitle: "Attrition, salary & job satisfaction",
-    video: "/assets/employee-analytics-demo.mp4",
-    mediaLabel: "Employee analytics dashboard walkthrough",
-    summary:
-      "An employee analytics dashboard exploring attrition rate, salary, and job-satisfaction factors.",
-    finding: "3",
-    findingLabel: "analysis areas described in the supplied project page",
-    proofPoints: [
-      ["Attrition", "employee turnover"],
-      ["Salary", "compensation"],
-      ["Job satisfaction", "employee experience"],
-    ],
-    details:
-      "The supplied project page describes a MySQL and Python dashboard for tracking attrition rate, salary, and job-satisfaction factors. A local demo recording is provided; no quantified business outcome is claimed here.",
-    tags: ["MySQL", "Python", "HR analytics"],
-  },
-  {
-    slug: "healthcare-data-model",
-    number: "05",
-    type: "SQL · Data modeling",
-    title: "Healthcare data model",
-    subtitle: "A relational schema for connected records",
-    image: "/assets/healthcare-schema.png",
-    imageAlt: "Relational database diagram connecting sales, customers, products and prescriptions",
-    summary:
-      "A relational schema exercise connecting operational records across customers, prescriptions, products, suppliers and sales.",
-    finding: "7",
-    findingLabel: "tables shown in the supplied schema diagram",
-    proofPoints: [
-      ["Category", "product classification"],
-      ["Suppliers", "supplier records"],
-      ["Products", "inventory details"],
-      ["Prescriptions", "prescription records"],
-      ["Sales", "transaction records"],
-      ["Employees", "employee records"],
-      ["Customers", "customer records"],
-    ],
-    details:
-      "The supplied diagram includes category, supplier, product, prescription, sales, employee and customer tables. It is presented here as a data-modeling sample, not as a deployed healthcare system.",
-    tags: ["SQL", "MySQL", "Data modeling"],
-  },
-  {
-    slug: "python-analysis",
-    number: "06",
-    type: "Python · Code analysis",
-    title: "Python analysis",
-    subtitle: "Code walkthrough & visual output",
-    image: "/assets/superstore-profitability.png",
-    imageAlt: "Python analysis code with its dashboard output",
-    summary:
-      "A Python-based analysis presented alongside its visual dashboard output, shown here as a code-and-chart pairing.",
-    finding: "Python",
-    findingLabel: "language used for the analysis",
-    proofPoints: [
-      ["Pandas", "data preparation"],
-      ["Matplotlib", "visual output"],
-      ["Jupyter", "notebook workflow"],
-    ],
-    details:
-      "This entry presents the Python analysis code together with the chart it produces. The screenshot pairs the code and the resulting dashboard output so the logic behind each visual is traceable.",
-    tags: ["Python", "Pandas", "Visualization"],
-  },
-];
+const ProjectsContext = createContext(null);
+
+async function readJsonResponse(response, fallbackMessage) {
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    await response.text();
+    throw new Error(fallbackMessage);
+  }
+
+  try {
+    return await response.json();
+  } catch {
+    throw new Error(fallbackMessage);
+  }
+}
+
+function useProjects() {
+  const context = useContext(ProjectsContext);
+  if (!context) throw new Error("useProjects must be used within the projects provider.");
+  return context;
+}
 
 const navigation = [
   { to: "/", label: "Overview", end: true },
@@ -143,6 +31,7 @@ const navigation = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/contact", label: "Contact" },
+  { to: "/admin", label: "Admin", className: "nav-admin" },
 ];
 
 function Arrow({ diagonal = false }) {
@@ -173,7 +62,7 @@ function Header() {
             to={item.to}
             end={item.end}
             onClick={() => setOpen(false)}
-            className={({ isActive }) => `nav-link${isActive ? " is-active" : ""}`}
+            className={({ isActive }) => `nav-link${isActive ? " is-active" : ""}${item.className ? ` ${item.className}` : ""}`}
           >
             {item.label}
           </NavLink>
@@ -201,6 +90,7 @@ function SectionLabel({ index, children }) {
 }
 
 function ProjectCard({ project, featured = false }) {
+  const { projects } = useProjects();
   return (
     <article className={`project-card${featured ? " project-card-featured" : ""}`}>
       {project.video ? (
@@ -359,6 +249,7 @@ function MessageTicker() {
 }
 
 function Home() {
+  const { projects } = useProjects();
   return (
     <>
       <main>
@@ -400,7 +291,7 @@ function Home() {
             <SectionLabel index="01">SELECTED WORK</SectionLabel>
             <div className="heading-row">
               <h2>Evidence, not<br /><em>just visuals.</em></h2>
-              <p>Five projects that bring different questions to the same place: what does the data tell us, and what can we do with it?</p>
+              <p>A growing set of projects that bring different questions to the same place: what does the data tell us, and what can we do with it?</p>
             </div>
           </div>
           <div className="project-grid">
@@ -442,12 +333,13 @@ function Home() {
 }
 
 function Work() {
+  const { projects } = useProjects();
   const [filter, setFilter] = useState("All");
   const filters = ["All", "Power BI", "SQL", "Python", "Dashboard"];
   const visible = projects.filter((project) => filter === "All" || project.tags.some((tag) => tag.toLowerCase().includes(filter.toLowerCase())));
   return (
     <main className="page-main">
-      <PageIntro number="01" eyebrow="PROJECTS" title={<>A closer look at<br /><em>the questions.</em></>} intro="Five analysis and modeling samples, with supporting sources close by and case notes grounded in the supplied materials." />
+      <PageIntro number="01" eyebrow="PROJECTS" title={<>A closer look at<br /><em>the questions.</em></>} intro="Analysis and modeling samples, with supporting sources close by and case notes grounded in the supplied materials." />
       <section className="work-list-section section-pad">
         <div className="filter-bar" role="group" aria-label="Filter projects by tool">
           <span>FILTER BY TOOL</span>
@@ -477,6 +369,7 @@ function Work() {
 function ProjectDetail() {
   const { slug } = useParams();
   const [zoomed, setZoomed] = useState(false);
+  const { projects, loading } = useProjects();
   const project = projects.find((item) => item.slug === slug);
   useEffect(() => {
     if (!zoomed) return;
@@ -485,6 +378,7 @@ function ProjectDetail() {
     document.body.style.overflow = "hidden";
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
   }, [zoomed]);
+  if (!project && loading) return <main className="not-found"><p role="status">Loading project…</p></main>;
   if (!project) return <NotFound />;
   return (
     <main className="page-main">
@@ -672,10 +566,12 @@ function NotFound() {
   );
 }
 
-export default function App() {
+function PublicPortfolio() {
+  const { error } = useProjects();
   return (
     <div className="app-shell">
       <Header />
+      
       <a
         className="whatsapp-float"
         href="https://wa.me/2348140365922"
@@ -683,6 +579,7 @@ export default function App() {
         rel="noreferrer"
         aria-label="Chat on WhatsApp"
       >
+        
         <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false">
           <path fill="currentColor" d="M16 3C9.4 3 4 8.3 4 14.9c0 2.1.6 4.1 1.6 5.9L4 29l8.4-2.2c1.7.9 3.7 1.4 5.6 1.4 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm0 21.5c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.4 1.2 1.2-4.3-.2-.4c-1-1.6-1.5-3.5-1.5-5.4 0-5.5 4.6-10 10.3-10s10.3 4.5 10.3 10-4.6 10.5-10.3 10.5zm5.7-7.7c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.8-1-2.4-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/>
         </svg>
@@ -700,6 +597,54 @@ export default function App() {
       </Routes>
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  const [portfolio, setPortfolio] = useState({ projects: initialProjects, error: "" });
+
+  async function refreshProjects() {
+    try {
+      const response = await fetch("/api/projects", { cache: "no-store" });
+      const projects = await readJsonResponse(response, "Project service is unavailable right now.");
+      if (!response.ok) throw new Error(projects.error || `Project service returned HTTP ${response.status}.`);
+      if (!Array.isArray(projects)) throw new Error("Project service returned an invalid response.");
+      setPortfolio({ projects, error: "" });
+      return "";
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown project loading error.";
+      setPortfolio((current) => ({ ...current, error: message }));
+      return message;
+    }
+  }
+
+  async function saveProjects(projects) {
+    try {
+      const response = await fetch("/api/admin/projects", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projects }),
+      });
+      const result = await readJsonResponse(response, "Could not save projects. Please try again.");
+      if (!response.ok) throw new Error(result.error || `Project service returned HTTP ${response.status}.`);
+      setPortfolio({ projects: result.projects, error: "" });
+      return "";
+    } catch (error) {
+      return `Could not save projects: ${error instanceof Error ? error.message : "Unknown error."}`;
+    }
+  }
+
+  useEffect(() => {
+    void refreshProjects();
+  }, []);
+
+  return (
+    <ProjectsContext.Provider value={{ projects: portfolio.projects, loading: false, error: portfolio.error }}>
+      <Routes>
+        <Route path="/admin/*" element={<AdminProjects projects={portfolio.projects} onSave={saveProjects} refreshProjects={refreshProjects} />} />
+        <Route path="*" element={<PublicPortfolio />} />
+      </Routes>
+    </ProjectsContext.Provider>
   );
 }
 
